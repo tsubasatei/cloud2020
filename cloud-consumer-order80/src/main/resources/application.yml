@@ -1,5 +1,5 @@
 server:
-  port: 9001
+  port: 6001
 
 eureka:
   client:
@@ -11,4 +11,4 @@ eureka:
 
 spring:
   application:
-    name: cloud-order-consumer
+    name: cloud-order-service
