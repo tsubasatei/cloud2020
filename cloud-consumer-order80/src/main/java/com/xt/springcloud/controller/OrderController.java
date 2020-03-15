@@ -28,8 +28,8 @@ public class OrderController {
     // 通过在eureka上注册过的微服务名称调用
     public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
-    @Autowired
-    private LoadBalancer loadBalancer;
+//    @Autowired
+//    private LoadBalancer loadBalancer;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -59,7 +59,7 @@ public class OrderController {
         return new CommonResult<>(444, "ForEntity查询失败，id：" + id);
     }
 
-    @GetMapping("/consumer/payment/lb")
+    /*@GetMapping("/consumer/payment/lb")
     public String getPaymentLB() {
 //        return restTemplate.getForObject(PAYMENT_URL + "/payment/lb", String.class);
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
@@ -69,5 +69,11 @@ public class OrderController {
         ServiceInstance serviceInstance = loadBalancer.instances(instances);
         URI uri = serviceInstance.getUri();
         return restTemplate.getForObject(uri + "/payment/lb", String.class);
+    }*/
+
+    @GetMapping("/consumer/payment/zipkin")
+    public String paymentZipkin() {
+
+        return restTemplate.getForObject(PAYMENT_URL + "/payment/zipkin", String.class);
     }
 }
