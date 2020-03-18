@@ -1,0 +1,17 @@
+server:
+  port: 6003
+spring:
+  application:
+    name: nacos-order-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848  #  配置Nacos地址
+    sentinel:
+      transport:
+        dashboard: localhost:8080 # 配置 Sentinel dashboard 地址
+        port: 8719
+
+# 消费者将要访问的微服务名称(注册成功进nacos的微服务提供者)
+service-url:
+  nacos-user-service: http://nacos-payment-provider
