@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
@@ -25,12 +26,13 @@ public class DataSourceProxyConfig {
         return new DruidDataSource();
     }
 
-    @Bean
+    @Primary
+    @Bean("dataSource")
     public DataSourceProxy dataSourceProxy(DataSource dataSource) {
         return new DataSourceProxy(dataSource) ;
     }
 
-    @Bean
+    @Bean("sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactoryBean(DataSourceProxy dataSourceProxy) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSourceProxy);

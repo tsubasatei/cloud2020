@@ -22,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
     private AccountService accountService;
 
     // name: 唯一性，不冲突，随意
-//    @GlobalTransactional(name = "fsp-create-order", rollbackFor = Exception.class)
+    @GlobalTransactional(name = "fsp-create-order", rollbackFor = Exception.class)
     @Override
     public void create(Order order) {
         log.info("--->开始新建订单");
